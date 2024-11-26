@@ -2,22 +2,28 @@ import { Menu } from "antd";
 import Link from "next/link";
 import { AppstoreOutlined, LoginOutlined, UserAddOutlined } from '@ant-design/icons';
 
+const items = [
+    {
+      key: "app",
+      icon: <AppstoreOutlined />,
+      label: <Link href="/">App</Link>,
+    },
+    {
+      key: "login",
+      icon: <LoginOutlined />,
+      label: <Link href="/login">Login</Link>,
+    },
+    {
+      key: "register",
+      icon: <UserAddOutlined />,
+      label: <Link href="/register">Register</Link>,
+    },
+];
+  
 const TopNav = () => {
     return (
         <>
-            <Menu mode="horizontal">
-                <Menu.Item icon={<AppstoreOutlined />}>
-                    <Link href="/">App</Link>
-                </Menu.Item>
-
-                <Menu.Item icon={<LoginOutlined />}>
-                    <Link href="/login">Login</Link>
-                </Menu.Item>
-
-                <Menu.Item icon={<UserAddOutlined />}>
-                    <Link href="/register">Register</Link>
-                </Menu.Item>
-            </Menu>
+            <Menu mode="horizontal" items={items} />
         </>
     );
 };
