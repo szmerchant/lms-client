@@ -10,14 +10,15 @@ app
     .prepare()
     .then(() => {
         const server = express();
-        // apply proxy in dev mode
+
+        // Proxy API requests in development mode
         if(dev) {
             server.use("/api", createProxyMiddleware({
                 target: "http://localhost:8000/api",
                 changeOrigin: true,
             }))
         }
-
+        
         server.all("*", (req, res) => {
             return handle(req, res);
         });

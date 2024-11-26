@@ -8,7 +8,6 @@ const TopNav = () => {
 
     useEffect(() => {
         typeof window !== "undefined" && setCurrent(window.location.pathname)
-        console.log(window.location.pathname);
     }, [typeof window !== "undefined" && window.location.pathname]);
 
     const items = [
