@@ -62,7 +62,7 @@ const TopNav = () => {
               onClick: logout,
               icon: <LogoutOutlined />,
               style: { marginLeft: "auto" }, // Push to the right
-              label: <>Logout</>,
+              label: "Logout",
             },
           ]),
     ];
