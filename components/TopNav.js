@@ -4,8 +4,8 @@ import Link from "next/link";
 import {
   AppstoreOutlined,
   LoginOutlined,
-  LogoutOutlined,
-  UserAddOutlined
+  UserAddOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 import { Context } from "../context";
 import axios from "axios";
@@ -58,11 +58,17 @@ const TopNav = () => {
           ]
         : [
             {
-              key: "/logout",
-              onClick: logout,
-              icon: <LogoutOutlined />,
-              style: { marginLeft: "auto" }, // Push to the right
-              label: "Logout",
+              key: "user-menu",
+              label: user.name || "User", // Display user name if available
+              icon: <UserOutlined />,
+              style: { marginLeft: "auto" }, // Push submenu to the right
+              children: [
+                {
+                  key: "/logout",
+                  onClick: logout,
+                  label: "Logout",
+                },
+              ],
             },
           ]),
     ];
