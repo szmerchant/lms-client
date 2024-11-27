@@ -1,7 +1,7 @@
 const Index = () => {
     return (
         <>
-            <h1 className="jumbotron text-center bg-primary">Online Education Marketplace</h1>
+            <h1 className="jumbotron text-center bg-primary py-5">Online Education Marketplace</h1>
             <p>from next js...</p>
         </>
     )
