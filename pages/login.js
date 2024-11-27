@@ -13,7 +13,6 @@ const Login = () => {
 
     // state
     const {state, dispatch} = useContext(Context);
-    // console.log("STATE", state);
 
     // router
     const router = useRouter();
@@ -26,7 +25,6 @@ const Login = () => {
                 email,
                 password
             });
-            // console.log("LOGIN RESPONSE", data);
             dispatch({
                 type: "LOGIN",
                 payload: data,
@@ -35,7 +33,6 @@ const Login = () => {
             window.localStorage.setItem("user", JSON.stringify(data));
             // redirect
             router.push("/");
-            // setLoading(false)
         } catch (err) {
             toast(err.response.data);
             setLoading(false);
