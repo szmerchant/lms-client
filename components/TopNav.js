@@ -16,7 +16,6 @@ const TopNav = () => {
     const [current, setCurrent] = useState("");
 
     const { state, dispatch } = useContext(Context);
-
     const { user } = state;
 
     const router = useRouter();
