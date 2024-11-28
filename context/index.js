@@ -38,29 +38,32 @@ const Provider = ({children}) => {
     }, []);
 
     axios.interceptors.response.use(
-        function(response) {
-            // any status code in range of 2XX cause function trigger
-            return response; 
+        function (response) {
+            // Any status code in the range of 2xx triggers this function
+            return response;
         },
-        function(error) {
-            // any status code outside of range of 2XX cause function trigger
+        function (error) {
             let res = error.response;
-            if(res.status === 401 && res.config && !res.config.__isRetryRequest) {
+    
+            // Handle 401 errors (unauthorized) with custom logic
+            if (res && res.status === 401 && res.config && !res.config.__isRetryRequest) {
                 return new Promise((resolve, reject) => {
                     axios.get("/api/logout")
-                    .then((data) => {
-                        console.log("/401 error > logout");
-                        dispatch({ type: "LOGOUT" });
-                        window.localStorage.removeItem("user");
-                        router.push("/login");
-                    })
-                    .catch((err) => {
-                        console.log("AXIOS INTERCEPTORS ERR", err);
-                        reject(error);
-                    });
+                        .then(() => {
+                            console.log("/401 error > logout");
+                            dispatch({ type: "LOGOUT" });
+                            window.localStorage.removeItem("user");
+                            router.push("/login");
+                        })
+                        .catch((err) => {
+                            console.log("AXIOS INTERCEPTORS ERR", err);
+                            reject(err);
+                        });
                 });
             }
-            Promise.reject(error);
+    
+            // For other errors, ensure the error is propagated to the caller
+            return Promise.reject(error);
         }
     );
 

@@ -26,10 +26,12 @@ const Login = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const { data } = await axios.post("/api/login", {
+            const response = await axios.post("/api/login", {
                 email,
                 password,
             });
+            const { data } = response;
+            
             // Dispatch user login action
             dispatch({
                 type: "LOGIN",
@@ -41,7 +43,8 @@ const Login = () => {
             router.push("/");
         } catch (err) {
             // Handle 400 errors explicitly
-            if (err.response && err.response.status === 400) {
+            console.log("err", err);
+            if (err.response && err.response.status == 400) {
                 toast.error(err.response.data); // Display error message from server
             } else {
                 // Handle other types of errors
