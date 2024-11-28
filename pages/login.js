@@ -43,7 +43,6 @@ const Login = () => {
             router.push("/");
         } catch (err) {
             // Handle 400 errors explicitly
-            console.log("err", err);
             if (err.response && err.response.status == 400) {
                 toast.error(err.response.data); // Display error message from server
             } else {
