@@ -28,21 +28,30 @@ const Login = () => {
             setLoading(true);
             const { data } = await axios.post("/api/login", {
                 email,
-                password
+                password,
             });
+            // Dispatch user login action
             dispatch({
                 type: "LOGIN",
                 payload: data,
             });
-            // save in local storage
+            // Save user data in local storage
             window.localStorage.setItem("user", JSON.stringify(data));
-            // redirect
+            // Redirect to homepage
             router.push("/");
         } catch (err) {
-            toast(err.response.data);
-            setLoading(false);
+            // Handle 400 errors explicitly
+            if (err.response && err.response.status === 400) {
+                toast.error(err.response.data); // Display error message from server
+            } else {
+                // Handle other types of errors
+                toast.error("An unexpected error occurred. Please try again.");
+            }
+        } finally {
+            setLoading(false); // Ensure loading is turned off
         }
     };
+    
     return (
         <>
             <h1 className="jumbotron text-center bg-primary square py-5">Login</h1>
