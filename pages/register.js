@@ -33,6 +33,9 @@ const Register = () => {
             });
             toast("Registration successful. Please login.");
             setLoading(false);
+            setName("");
+            setEmail("");
+            setPassword("");
         } catch (err) {
             toast(err.response.data);
             setLoading(false);
