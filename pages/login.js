@@ -84,10 +84,17 @@ const Login = () => {
                     </button>
                 </form>
 
-                <p className="text-center p-3">
+                <p className="text-center pt-3">
                     Not yet registered?{" "}
                     <Link href="/login">
                         Register
+                    </Link>
+                </p>
+
+
+                <p className="text-center">
+                    <Link href="/forgot-password">
+                        Forgot Password?
                     </Link>
                 </p>
             </div>
