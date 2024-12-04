@@ -18,9 +18,9 @@ const Login = () => {
     // router
     const router = useRouter();
 
-    useEffect(() => {
-        if(user !== null) router.push("/");
-    }, [user]);
+    // useEffect(() => {
+    //     if(user !== null) router.push("/");
+    // }, [user]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,7 +40,7 @@ const Login = () => {
             // Save user data in local storage
             window.localStorage.setItem("user", JSON.stringify(data));
             // Redirect to homepage
-            router.push("/");
+            router.push("/user");
         } catch (err) {
             // Handle 400 errors explicitly
             if (err.response && err.response.status == 400) {
