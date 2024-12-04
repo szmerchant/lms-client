@@ -63,6 +63,10 @@ const TopNav = () => {
               style: { marginLeft: "auto" }, // Push submenu to the right
               children: [
                 {
+                  key: "/user",
+                  label: <Link href="/user">Dashboard</Link>,
+                },
+                {
                   key: "/logout",
                   onClick: logout,
                   label: "Logout",

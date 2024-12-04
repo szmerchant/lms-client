@@ -22,7 +22,7 @@ const ForgotPassword = () => {
     // redirect if user if logged in
     useEffect(() => {
         if(user !== null) router.push("/");
-    }, []);
+    }, [user]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
