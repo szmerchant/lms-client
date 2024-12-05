@@ -6,3 +6,9 @@
     background-image: linear-gradient(to right, #007bff, #000);
     color: #fff;
 }
+
+.menu-container {
+    display: flex;
+    /* justifyContent: "space-between"; */
+    align-items: center;
+}

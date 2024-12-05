@@ -42,6 +42,7 @@ const TopNav = () => {
         icon: <AppstoreOutlined />,
         label: <Link href="/">App</Link>,
       },
+      // Conditional rendering for Create Course/Become Instructor
       ...(user && user.role && user.role.includes("Instructor")
         ? [
             {
@@ -50,7 +51,8 @@ const TopNav = () => {
               icon: <CarryOutOutlined />,
               label: <Link href="/instructor/course/create">Create Course</Link>,
             },
-          ] : [
+          ]
+        : [
             {
               key: "/user/become-instructor",
               onClick: (e) => setCurrent(e.key),
@@ -58,6 +60,7 @@ const TopNav = () => {
               label: <Link href="/user/become-instructor">Become Instructor</Link>,
             },
           ]),
+      // Login/Register for unauthenticated users
       ...(!user
         ? [
             {
@@ -74,11 +77,24 @@ const TopNav = () => {
             },
           ]
         : [
+            // Instructor tab (conditionally rendered)
+            ...(user.role.includes("Instructor")
+              ? [
+                  {
+                    key: "/instructor",
+                    onClick: (e) => setCurrent(e.key),
+                    icon: <TeamOutlined />,
+                    label: <Link href="/instructor">Instructor</Link>,
+                    style: { marginLeft: "auto" }
+                  },
+                ]
+              : []),
+            // User Menu (always present for authenticated users)
             {
               key: "user-menu",
               label: user.name || "User", // Display user name if available
               icon: <UserOutlined />,
-              style: { marginLeft: "auto" }, // Push submenu to the right
+              style: { marginLeft: 0 }, // Push user-menu to the right
               children: [
                 {
                   key: "/user",
@@ -96,7 +112,7 @@ const TopNav = () => {
 
     return (
         <>
-            <Menu mode="horizontal" items={items} selectedKeys={[current]} />
+            <Menu mode="horizontal" items={items} selectedKeys={[current]} className="mb-2" />
         </>
     );
 };

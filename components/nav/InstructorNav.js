@@ -1,12 +1,19 @@
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const InstructorNav = () => {
+    const [ current, setCurrent ] = useState("");
+
+    useEffect(() => {
+        typeof window !== "undefined" && setCurrent(window.location.pathname)
+    }, [typeof window !== "undefined" && window.location.pathname]);
+
     return (
-        <div className="nav flex-column nav-pills mt-2">
-            <Link href="/instructor" className="nav-link active" >
+        <div className="nav flex-column nav-pills">
+            <Link href="/instructor" className={`nav-link ${current === "/instructor" && "active"}`} >
                 Dashboard
             </Link>
-            <Link href="/instructor/course/create" className="nav-link" >
+            <Link href="/instructor/course/create" className={`nav-link ${current === "/instructor/course/create" && "active"}`} >
                 Course Create
             </Link>
         </div>
