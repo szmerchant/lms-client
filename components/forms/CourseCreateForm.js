@@ -64,7 +64,7 @@ const CourseCreateForm = ({
                             <Select
                                 defaultValue="$9.99"
                                 style={{ width: "100px" }}
-                                onChange={v => setValue({ ...values, price: v })}
+                                onChange={v => setValues({ ...values, price: v })}
                                 tokenSeparator={[,]}
                                 size="large"
                             >
