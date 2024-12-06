@@ -14,7 +14,11 @@ const CourseCreateForm = ({
 }) => {
     const children = [];
     for (let i = 9.99; i <= 100.99; i++){
-        children.push(<Option key={i.toFixed(2)}>${i.toFixed(2)}</Option>);
+        children.push(
+            <Option key={i.toFixed(2)} value={parseFloat(i.toFixed(2))}>
+                ${i.toFixed(2)}
+            </Option>
+        );
     }
 
     return (
@@ -62,10 +66,9 @@ const CourseCreateForm = ({
                     <div className="col-auto" style={{ flexShrink: 0 }}>
                         <div className="form-group">
                             <Select
-                                defaultValue="$9.99"
+                                value={values.price}
                                 style={{ width: "100px" }}
                                 onChange={v => setValues({ ...values, price: v })}
-                                tokenSeparator={[,]}
                                 size="large"
                             >
                                 {children}
