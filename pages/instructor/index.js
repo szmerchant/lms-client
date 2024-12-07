@@ -36,7 +36,7 @@ const InstructorIndex = () => {
 
                         {/* Course Details */}
                         <div className="flex-grow-1 px-3">
-                            <Link href={`/instructor/course/view/${course._id}`} className="pointer text-primary">
+                            <Link href={`/instructor/course/view/${course.slug}`} className="pointer text-primary">
                                 <h5 className="mb-1">{course.name}</h5>
                             </Link>
                             <p className="mb-1">{course.lessons.length} Lessons</p>
