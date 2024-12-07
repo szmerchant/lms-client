@@ -53,7 +53,11 @@ const CourseCreateForm = ({
                             style={{ width: "100%" }}
                             size="large"
                             value={values.paid}
-                            onChange={v => setValues({...values, paid: !values.paid})}
+                            onChange={v => setValues({
+                                ...values,
+                                paid: v,
+                                price: v ? 9.99 : 0.0 // Set price to 9.99 for Paid, 0.0 for Free
+                            })}
                         >
                             <Option value={true}>Paid</Option>
                             <Option value={false}>Free</Option>
