@@ -1,6 +1,6 @@
 import { Button } from "antd";
 
-const AddLessonForm = ({ values, setValues, handleAddLesson, uploading }) => {
+const AddLessonForm = ({ values, setValues, handleAddLesson, uploading, uploadButtonText, handleVideo }) => {
     return <div className="container pt-3">
         <form onSubmit={handleAddLesson}>
             <input
@@ -23,16 +23,24 @@ const AddLessonForm = ({ values, setValues, handleAddLesson, uploading }) => {
             placeholder="Content"
         ></textarea>
 
-        <Button
-            onClick={handleAddLesson}
-            className="col mt-3"
-            size="large"
-            type="primary"
-            loading={uploading}
-            shape="round"
-        >
-            Save
-        </Button>
+        {/* Buttons Container */}
+        <div className="d-flex flex-column mt-3">
+            <label className="btn btn-dark btn-block text-left mb-3">
+                {uploadButtonText}
+                <input onChange={handleVideo} type="file" accept="video/*" hidden />
+            </label>
+
+            <Button
+                onClick={handleAddLesson}
+                className="col"
+                size="large"
+                type="primary"
+                loading={uploading}
+                shape="round"
+            >
+                Save
+            </Button>
+        </div>
     </div>
 };
 
