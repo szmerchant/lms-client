@@ -1,6 +1,6 @@
 import { Button } from "antd";
 
-const AddLessonForm = ({ values, setValues, handleAddLesson, uploading, uploadButtonText, handleVideo }) => {
+const AddLessonForm = ({ values, setValues, handleAddLesson, loading, uploadButtonText, handleVideo }) => {
     return <div className="container pt-3">
         <form onSubmit={handleAddLesson}>
             <input
@@ -35,7 +35,7 @@ const AddLessonForm = ({ values, setValues, handleAddLesson, uploading, uploadBu
                 className="col"
                 size="large"
                 type="primary"
-                loading={uploading}
+                loading={loading}
                 shape="round"
             >
                 Save
