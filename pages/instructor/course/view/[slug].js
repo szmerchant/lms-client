@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import InstructorRoute from "../../../../components/routes/InstructorRoute";
 import axios from "axios";
-import { Avatar, Tooltip } from "antd";
-import { EditOutlined, CheckOutlined } from "@ant-design/icons";
+import { Avatar, Tooltip, Button, Modal } from "antd";
+import { EditOutlined, CheckOutlined, UploadOutlined } from "@ant-design/icons";
 import ReactMarkdown from "react-markdown";
 
 const CourseView = () => {
     const [ course, setCourse ] = useState({});
+    // for lessons
+    const [ visible, setVisible ] = useState(false);
 
     const router = useRouter();
     const { slug } = router.query;
@@ -75,6 +77,34 @@ const CourseView = () => {
                                 </div>
                             </div>
                         </div>
+
+                        <br />
+
+                        {/* Add Lesson Button */}
+                        <div className="row">
+                            <Button
+                                onClick={() => setVisible(true)}
+                                className="col-md-6 offset-md-3 text-center"
+                                type="primary"
+                                shape="round"
+                                icon={<UploadOutlined />}
+                                size="large"
+                            >
+                                Add Lesson
+                            </Button>
+                        </div>
+
+                        <br />
+
+                        {/* Add Lesson Modal Popup */}
+                        <Modal title="+ Add Lesson"
+                            centered
+                            open={visible}
+                            onCancel={() => setVisible(false)}
+                            footer={null}
+                        >
+                            show add lesson component
+                        </Modal>
                     </div>
                 )}
             </div>
