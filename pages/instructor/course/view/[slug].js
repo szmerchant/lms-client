@@ -68,7 +68,7 @@ const CourseView = () => {
     const handleVideoRemove = async () => {
         try {
             setUploading(true);
-            const { data } = await post(
+            const { data } = await axios.post(
                 "/api/course/video-remove",
                 values.video
             );
@@ -98,7 +98,7 @@ const CourseView = () => {
                             {/* Course Details */}
                             <div className="flex-grow-1 px-3" style={{ lineHeight: "1.4" }}>
                                 <h5 className="text-primary mb-2">{course.name}</h5>
-                                <p classsName="mb-1">
+                                <p className="mb-1">
                                     {course.lessons && course.lessons.length} Lessons
                                 </p>
                                 <p className="text-muted mb-0" style={{ fontSize: "12px", marginTop: "-5px" }}>
