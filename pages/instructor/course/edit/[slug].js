@@ -5,6 +5,9 @@ import CourseCreateForm from "../../../../components/forms/CourseCreateForm";
 import Resizer from "react-image-file-resizer";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import { Avatar, List } from "antd";
+
+const { Item } = List;
 
 const CourseEdit = () => {
     // state
@@ -16,6 +19,7 @@ const CourseEdit = () => {
         paid: true,
         category: "",
         loading: false,
+        lessons: []
     });
     const [ image, setImage ] = useState({});
     const [ preview, setPreview ] = useState("");
@@ -108,6 +112,24 @@ const CourseEdit = () => {
                     handleImageRemove={handleImageRemove}
                     editPage={true}
                 />
+            </div>
+
+            <hr />
+
+            <div className="row pb-5">
+                <div className-="col lesson-list">
+                    <h4>
+                        {values && values.lessons && values.lessons.length} Lessons
+                    </h4>
+                    <List itemLayout="horizontal" dataSource={values && values.lessons} renderItem={(item, index) => (
+                        <List.Item>
+                            <List.Item.Meta
+                                avatar={<Avatar>{index + 1}</Avatar>}
+                                title={item.title}
+                            ></List.Item.Meta>
+                        </List.Item>
+                    )}></List>
+                </div>
             </div>
         </InstructorRoute>
     );

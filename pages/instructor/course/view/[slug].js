@@ -8,6 +8,7 @@ import ReactMarkdown from "react-markdown";
 import AddLessonForm from "../../../../components/forms/AddLessonForm";
 import { toast } from "react-toastify";
 
+const { Item } = List;
 
 const CourseView = () => {
     const [ course, setCourse ] = useState({});
@@ -196,12 +197,12 @@ const CourseView = () => {
                                     {course && course.lessons && course.lessons.length} Lessons
                                 </h4>
                                 <List itemLayout="horizontal" dataSource={course && course.lessons} renderItem={(item, index) => (
-                                    <List.Item>
-                                        <List.Item.Meta
+                                    <Item>
+                                        <Item.Meta
                                             avatar={<Avatar>{index + 1}</Avatar>}
                                             title={item.title}
-                                        ></List.Item.Meta>
-                                    </List.Item>
+                                        ></Item.Meta>
+                                    </Item>
                                 )}></List>
                             </div>
                         </div>
