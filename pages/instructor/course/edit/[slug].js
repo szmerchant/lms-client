@@ -97,6 +97,14 @@ const CourseEdit = () => {
         }
     };
 
+    const handleDrag = (e, index) => {
+        console.log("ON DRAG => ", index);
+    };
+
+    const handleDrop = (e, index) => {
+        console.log("ON DROP => ", index);
+    };
+
     return (
         <InstructorRoute>
             <h1 className="jumbotron text-center square py-5">Update Course</h1>
@@ -122,15 +130,20 @@ const CourseEdit = () => {
                         {values && values.lessons && values.lessons.length} Lessons
                     </h4>
                     <List
+                        onDragOver={(e) => e.preventDefault()}
                         itemLayout="horizontal"
                         dataSource={values && values.lessons}
                         renderItem={(item, index) => (
-                            <List.Item>
-                                <List.Item.Meta
+                            <Item
+                                draggable
+                                onDragStart={e => handleDrag(e, index)}
+                                onDrop={e => handleDrop(e, index)}
+                            >
+                                <Item.Meta
                                     avatar={<Avatar>{index + 1}</Avatar>}
                                     title={item.title}
-                                ></List.Item.Meta>
-                            </List.Item>
+                                ></Item.Meta>
+                            </Item>
                     )}></List>
                 </div>
             </div>
