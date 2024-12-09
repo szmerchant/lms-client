@@ -1,7 +1,7 @@
 import { Badge, Button } from "antd";
 import { currencyFormatter } from "../../utils/helpers";
 import ReactPlayer from "react-player";
-import { SafetyOutlined } from "@ant-design/icons";
+import { SafetyOutlined, LoadingOutlined } from "@ant-design/icons";
 
 const SingleCourseJumbotron = ({
     course, 

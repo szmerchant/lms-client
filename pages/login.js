@@ -86,7 +86,7 @@ const Login = () => {
 
                 <p className="text-center pt-3">
                     Not yet registered?{" "}
-                    <Link href="/login">
+                    <Link href="/register">
                         Register
                     </Link>
                 </p>
