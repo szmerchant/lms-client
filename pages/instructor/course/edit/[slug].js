@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { Avatar, List, Modal } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
+import UpdateLessonForm from "../../../../components/forms/UpdateLessonForm";
 
 const { Item } = List;
 
@@ -29,6 +30,9 @@ const CourseEdit = () => {
     // state for lessons update
     const [ visible, setVisible ] = useState(false);
     const [ current, setCurrent ] = useState({});
+    const [ uploadVideoButtonText, setUploadVideoButtonText ] = useState("Upload Video");
+    const [ progress, setProgress ] = useState(0);
+    const [ uploading, setUploading ] = useState(false);
 
     // router
     const router = useRouter();
@@ -138,6 +142,16 @@ const CourseEdit = () => {
         console.log("LESSON DELETED =>", data);
     };
 
+    // lesson update functions
+
+    const handleVideo = () => {
+        console.log("handle video");
+    };
+
+    const handleUpdateLesson = () => {
+        console.log("handle update lesson");
+    };
+
     return (
         <InstructorRoute>
             <h1 className="jumbotron text-center square py-5">Update Course</h1>
@@ -197,8 +211,15 @@ const CourseEdit = () => {
                 onCancel={() => setVisible(false)}
                 footer={null}
             >
-                update lesson form
-                <pre>{JSON.stringify(current, null, 4)}</pre>
+                <UpdateLessonForm
+                    current={current}
+                    setCurrent={setCurrent}
+                    handleVideo={handleVideo}
+                    handleUpdateLesson={handleUpdateLesson}
+                    uploadVideoButtonText={uploadVideoButtonText}
+                    progress={progress}
+                    uploading={uploading}
+                />
             </Modal>
         </InstructorRoute>
     );
