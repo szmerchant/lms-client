@@ -1,15 +1,31 @@
-import { Badge } from "antd";
+import { Badge, Button } from "antd";
 import { currencyFormatter } from "../../utils/helpers";
 import ReactPlayer from "react-player";
+import { SafetyOutlined } from "@ant-design/icons";
 
 const SingleCourseJumbotron = ({
     course, 
     showModal,
     setShowModal,
     preview,
-    setPreview
+    setPreview,
+    loading,
+    user,
+    handlePaidEnrollment,
+    handleFreeEnrollment
 }) => {
-    const { name, description, instructor, updatedAt, lessons, image, price, paid, category } = course;
+    // destructure
+    const {
+        name,
+        description,
+        instructor,
+        updatedAt,
+        lessons,
+        image,
+        price,
+        paid,
+        category
+    } = course;
 
     return (
         <>
@@ -106,16 +122,30 @@ const SingleCourseJumbotron = ({
                         )}
 
                         {/* Enroll Button */}
-                        <button
-                            className="btn btn-warning btn-lg px-4"
-                            style={{
-                                fontWeight: "bold",
-                                borderRadius: "20px",
-                                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-                            }}
-                        >
-                            Enroll Now
-                        </button>
+                        {loading ? (
+                            <div className="d-flex justify-content-center">
+                                <LoadingOutlined className="h1 text-danger" />
+                            </div>
+                        ) : (
+                            <Button
+                                className="mb-3 enroll-button"
+                                type="primary"
+                                block
+                                shape="round"
+                                icon={<SafetyOutlined />}
+                                size="large"
+                                style={{
+                                    backgroundColor: "red", // Red background
+                                    borderColor: "red", // Match border color
+                                    color: "white", // White text
+                                }}
+                                disabled={loading}
+                                onClick={paid ? handlePaidEnrollment : handleFreeEnrollment}
+                            >
+                                {user ? "Enroll" : "Login To Enroll"}
+                            </Button>
+                        )}
+
                     </div>
                 </div>
             </div>
