@@ -121,13 +121,16 @@ const CourseEdit = () => {
                     <h4>
                         {values && values.lessons && values.lessons.length} Lessons
                     </h4>
-                    <List itemLayout="horizontal" dataSource={values && values.lessons} renderItem={(item, index) => (
-                        <List.Item>
-                            <List.Item.Meta
-                                avatar={<Avatar>{index + 1}</Avatar>}
-                                title={item.title}
-                            ></List.Item.Meta>
-                        </List.Item>
+                    <List
+                        itemLayout="horizontal"
+                        dataSource={values && values.lessons}
+                        renderItem={(item, index) => (
+                            <List.Item>
+                                <List.Item.Meta
+                                    avatar={<Avatar>{index + 1}</Avatar>}
+                                    title={item.title}
+                                ></List.Item.Meta>
+                            </List.Item>
                     )}></List>
                 </div>
             </div>
