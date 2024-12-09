@@ -35,7 +35,7 @@ const CourseEdit = () => {
 
     const loadCourse = async () => {
         const { data } = await axios.get(`/api/course/${slug}`);
-        setValues(data);
+        if(data) setValues(data);
         if(data && data.image) setImage(data.image);
     };
 
@@ -98,11 +98,28 @@ const CourseEdit = () => {
     };
 
     const handleDrag = (e, index) => {
-        console.log("ON DRAG => ", index);
+        // console.log("ON DRAG => ", index);
+        e.dataTransfer.setData("itemIndex", index);
     };
 
-    const handleDrop = (e, index) => {
-        console.log("ON DROP => ", index);
+    const handleDrop = async (e, index) => {
+        // console.log("ON DROP => ", index);
+        const movingItemIndex = e.dataTransfer.getData("itemIndex");
+        const targetItemIndex = index;
+        let allLessons = values.lessons;
+
+        let movingItem = allLessons[movingItemIndex]; // clicked/dragged item to re-order
+        allLessons.splice(movingItemIndex, 1); // remove 1 item from the given index
+        allLessons.splice(targetItemIndex, 0, movingItem); // push item after target item index
+
+        setValues({ ...values, lessons: [...allLessons] });
+
+        // save the new lessons order in db
+        const { data } = await axios.put(`/api/course/${slug}`, {
+            ...values,
+            image
+        });
+        toast("Lessons rearranged successfully");
     };
 
     return (
