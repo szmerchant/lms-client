@@ -82,10 +82,6 @@ const SingleCourse = () => {
                     }}
                 >
                     {clicked !== -1 ? (
-                        // <div style={{ padding: "20px", backgroundColor: "#f9f9f9", borderRadius: "10px" }}>
-                        //     <h3>{course.lessons[clicked].title}</h3>
-                        //     <p>{course.lessons[clicked].content}</p>
-                        // </div>
                         <>
                             {course.lessons[clicked].video && course.lessons[clicked].video.Location && (
                                 <>
