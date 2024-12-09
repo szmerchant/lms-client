@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import StudentRoute from "../../../components/routes/StudentRoute";
 
 const SingleCourse = () => {
     const [ loading, setLoading ] = useState(false);
@@ -15,14 +16,14 @@ const SingleCourse = () => {
     }, [slug]);
 
     const loadCourse = async () => {
-        const { data } = await axios.get(`/api/course/${slug}`);
+        const { data } = await axios.get(`/api/user/course/${slug}`);
         setCourse(data);
     };
 
     return (
-        <>
+        <StudentRoute>
             <h1>Course slug is: {JSON.stringify(course, null, 4)}</h1>
-        </>
+        </StudentRoute>
     );
 };
 
