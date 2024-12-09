@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import SingleCourseJumbotron from "../../components/cards/SingleCourseJumbotron";
 import PreviewModal from "../../components/modal/PreviewModal";
+import SingleCourseLessons from "../../components/cards/SingleCourseLessons";
 
 const SingleCourse = ({ course }) => {
     // state
@@ -29,6 +30,17 @@ const SingleCourse = ({ course }) => {
                 setShowModal={setShowModal}
                 preview={preview}
             />
+
+            {course.lessons && (
+                <div className="mt-4">
+                    <SingleCourseLessons
+                        lessons={course.lessons}
+                        setPreview={setPreview}
+                        showModal={showModal}
+                        setShowModal={setShowModal}
+                    />
+                </div>
+            )}
         </>
     );
 };
