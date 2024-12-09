@@ -6,6 +6,7 @@ import Resizer from "react-image-file-resizer";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { Avatar, List } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 
 const { Item } = List;
 
@@ -122,6 +123,17 @@ const CourseEdit = () => {
         toast("Lessons rearranged successfully");
     };
 
+    const handleDelete = async (index) => {
+        const answer = window.confirm("Are you sure you wan to delete?");
+        if (!answer) return;
+        let allLessons = values.lessons;
+        const removed = allLessons.splice(index, 1);
+        setValues({ ...values, lessons: allLessons });
+        // send request to server
+        const { data } = await axios.put(`/api/course/${slug}/${removed[0]._id}`);
+        console.log("LESSON DELETED =>", data);
+    };
+
     return (
         <InstructorRoute>
             <h1 className="jumbotron text-center square py-5">Update Course</h1>
@@ -160,6 +172,11 @@ const CourseEdit = () => {
                                     avatar={<Avatar>{index + 1}</Avatar>}
                                     title={item.title}
                                 ></Item.Meta>
+
+                                <DeleteOutlined
+                                    onClick={() => handleDelete(index)}
+                                    className="text-danger float-right"
+                                />
                             </Item>
                     )}></List>
                 </div>
