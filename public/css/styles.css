@@ -12,3 +12,7 @@
     /* justifyContent: "space-between"; */
     align-items: center;
 }
+
+.pointer {
+    cursor: pointer;
+}
