@@ -3,7 +3,8 @@
 }
 
 .jumbotron {
-    background-image: linear-gradient(to right, #007bff, #000);
+    /* background-image: linear-gradient(to right, #007bff, #000); */
+    background-image: linear-gradient(to right, #ff0000, #ff9900);
     color: #fff;
 }
 
@@ -16,3 +17,16 @@
 .pointer {
     cursor: pointer;
 }
+
+.equal-height {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px; /* Optional for spacing */
+  }
+  .course-card {
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    height: 100%; /* Ensures same height */
+  }

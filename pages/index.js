@@ -6,14 +6,12 @@ const Index = ({courses}) => {
     return (
         <>
             <h1 className="jumbotron text-center bg-primary py-5">Online Education Marketplace</h1>
-            <div className="container-fluid">
-                <div className="row">
-                    {courses.map((course) => (
-                        <div key={course._id} className="col-md-4">
-                            <CourseCard course={course} />
-                        </div>
-                    ))}
-                </div>
+            <div className="row">
+                {courses.map((course) => (
+                    <div key={course._id} className="col-md-4 d-flex">
+                    <CourseCard course={course} />
+                    </div>
+                ))}
             </div>
         </>
     )

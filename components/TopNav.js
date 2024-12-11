@@ -40,7 +40,7 @@ const TopNav = () => {
         key: "/",
         onClick: (e) => setCurrent(e.key),
         icon: <AppstoreOutlined />,
-        label: <Link href="/">App</Link>,
+        label: <Link href="/">Home</Link>,
       },
       // Conditional rendering for Create Course/Become Instructor
       ...(user && user.role && user.role.includes("Instructor")
@@ -52,14 +52,16 @@ const TopNav = () => {
               label: <Link href="/instructor/course/create">Create Course</Link>,
             },
           ]
-        : [
+        : user && !user.role.includes("Instructor")
+        ? [
             {
               key: "/user/become-instructor",
               onClick: (e) => setCurrent(e.key),
               icon: <TeamOutlined />,
               label: <Link href="/user/become-instructor">Become Instructor</Link>,
             },
-          ]),
+          ]
+        : []),
       // Login/Register for unauthenticated users
       ...(!user
         ? [
@@ -94,7 +96,7 @@ const TopNav = () => {
               key: "user-menu",
               label: user.name || "User", // Display user name if available
               icon: <UserOutlined />,
-              style: { marginLeft: 0 }, // Push user-menu to the right
+              style: !user.role?.includes("Instructor") ? { marginLeft: "auto" } : {},
               children: [
                 {
                   key: "/user",
@@ -112,7 +114,12 @@ const TopNav = () => {
 
     return (
         <>
-            <Menu mode="horizontal" items={items} selectedKeys={[current]} className="mb-2" />
+            <Menu
+              theme="dark"
+              mode="horizontal"
+              items={items}
+              selectedKeys={[current]}
+              className="mb-2" />
         </>
     );
 };
